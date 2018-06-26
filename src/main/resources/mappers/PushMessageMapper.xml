@@ -1,0 +1,214 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.yps.shangqi.push.mapper.PushMessageMapper">
+  <resultMap id="BaseResultMap" type="com.yps.shangqi.push.entities.PushMessage">
+    <constructor>
+      <idArg column="id" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="sys_id" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="title" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="content" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="extras" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="user_id" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="push_type" javaType="java.lang.Byte" jdbcType="TINYINT" />
+      <arg column="device_type" javaType="java.lang.Byte" jdbcType="TINYINT" />
+      <arg column="device_token" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="push_status" javaType="java.lang.Byte" jdbcType="TINYINT" />
+      <arg column="count" javaType="java.lang.Byte" jdbcType="TINYINT" />
+      <arg column="valid_flag" javaType="java.lang.Byte" jdbcType="TINYINT" />
+      <arg column="start_time" javaType="java.util.Date" jdbcType="TIMESTAMP" />
+      <arg column="c_time" javaType="java.util.Date" jdbcType="TIMESTAMP" />
+      <arg column="m_time" javaType="java.util.Date" jdbcType="TIMESTAMP" />
+    </constructor>
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, sys_id, title, content, extras, user_id, push_type, device_type, device_token, 
+    push_status, count, valid_flag, start_time, c_time, m_time
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from push_message
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from push_message
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.yps.shangqi.push.entities.PushMessage">
+    insert into push_message (id, sys_id, title, 
+      content, extras, user_id, 
+      push_type, device_type, device_token, 
+      push_status, count, valid_flag, 
+      start_time, c_time, m_time
+      )
+    values (#{id,jdbcType=INTEGER}, #{sysId,jdbcType=VARCHAR}, #{title,jdbcType=VARCHAR}, 
+      #{content,jdbcType=VARCHAR}, #{extras,jdbcType=VARCHAR}, #{userId,jdbcType=VARCHAR}, 
+      #{pushType,jdbcType=TINYINT}, #{deviceType,jdbcType=TINYINT}, #{deviceToken,jdbcType=VARCHAR}, 
+      #{pushStatus,jdbcType=TINYINT}, #{count,jdbcType=TINYINT}, #{validFlag,jdbcType=TINYINT}, 
+      #{startTime,jdbcType=TIMESTAMP}, #{cTime,jdbcType=TIMESTAMP}, #{mTime,jdbcType=TIMESTAMP}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.yps.shangqi.push.entities.PushMessage">
+    insert into push_message
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="sysId != null">
+        sys_id,
+      </if>
+      <if test="title != null">
+        title,
+      </if>
+      <if test="content != null">
+        content,
+      </if>
+      <if test="extras != null">
+        extras,
+      </if>
+      <if test="userId != null">
+        user_id,
+      </if>
+      <if test="pushType != null">
+        push_type,
+      </if>
+      <if test="deviceType != null">
+        device_type,
+      </if>
+      <if test="deviceToken != null">
+        device_token,
+      </if>
+      <if test="pushStatus != null">
+        push_status,
+      </if>
+      <if test="count != null">
+        count,
+      </if>
+      <if test="validFlag != null">
+        valid_flag,
+      </if>
+      <if test="startTime != null">
+        start_time,
+      </if>
+      <if test="cTime != null">
+        c_time,
+      </if>
+      <if test="mTime != null">
+        m_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="sysId != null">
+        #{sysId,jdbcType=VARCHAR},
+      </if>
+      <if test="title != null">
+        #{title,jdbcType=VARCHAR},
+      </if>
+      <if test="content != null">
+        #{content,jdbcType=VARCHAR},
+      </if>
+      <if test="extras != null">
+        #{extras,jdbcType=VARCHAR},
+      </if>
+      <if test="userId != null">
+        #{userId,jdbcType=VARCHAR},
+      </if>
+      <if test="pushType != null">
+        #{pushType,jdbcType=TINYINT},
+      </if>
+      <if test="deviceType != null">
+        #{deviceType,jdbcType=TINYINT},
+      </if>
+      <if test="deviceToken != null">
+        #{deviceToken,jdbcType=VARCHAR},
+      </if>
+      <if test="pushStatus != null">
+        #{pushStatus,jdbcType=TINYINT},
+      </if>
+      <if test="count != null">
+        #{count,jdbcType=TINYINT},
+      </if>
+      <if test="validFlag != null">
+        #{validFlag,jdbcType=TINYINT},
+      </if>
+      <if test="startTime != null">
+        #{startTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="cTime != null">
+        #{cTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="mTime != null">
+        #{mTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.yps.shangqi.push.entities.PushMessage">
+    update push_message
+    <set>
+      <if test="sysId != null">
+        sys_id = #{sysId,jdbcType=VARCHAR},
+      </if>
+      <if test="title != null">
+        title = #{title,jdbcType=VARCHAR},
+      </if>
+      <if test="content != null">
+        content = #{content,jdbcType=VARCHAR},
+      </if>
+      <if test="extras != null">
+        extras = #{extras,jdbcType=VARCHAR},
+      </if>
+      <if test="userId != null">
+        user_id = #{userId,jdbcType=VARCHAR},
+      </if>
+      <if test="pushType != null">
+        push_type = #{pushType,jdbcType=TINYINT},
+      </if>
+      <if test="deviceType != null">
+        device_type = #{deviceType,jdbcType=TINYINT},
+      </if>
+      <if test="deviceToken != null">
+        device_token = #{deviceToken,jdbcType=VARCHAR},
+      </if>
+      <if test="pushStatus != null">
+        push_status = #{pushStatus,jdbcType=TINYINT},
+      </if>
+      <if test="count != null">
+        count = #{count,jdbcType=TINYINT},
+      </if>
+      <if test="validFlag != null">
+        valid_flag = #{validFlag,jdbcType=TINYINT},
+      </if>
+      <if test="startTime != null">
+        start_time = #{startTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="cTime != null">
+        c_time = #{cTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="mTime != null">
+        m_time = #{mTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.yps.shangqi.push.entities.PushMessage">
+    update push_message
+    set sys_id = #{sysId,jdbcType=VARCHAR},
+      title = #{title,jdbcType=VARCHAR},
+      content = #{content,jdbcType=VARCHAR},
+      extras = #{extras,jdbcType=VARCHAR},
+      user_id = #{userId,jdbcType=VARCHAR},
+      push_type = #{pushType,jdbcType=TINYINT},
+      device_type = #{deviceType,jdbcType=TINYINT},
+      device_token = #{deviceToken,jdbcType=VARCHAR},
+      push_status = #{pushStatus,jdbcType=TINYINT},
+      count = #{count,jdbcType=TINYINT},
+      valid_flag = #{validFlag,jdbcType=TINYINT},
+      start_time = #{startTime,jdbcType=TIMESTAMP},
+      c_time = #{cTime,jdbcType=TIMESTAMP},
+      m_time = #{mTime,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>
